@@ -13,9 +13,6 @@ st.header("Lookies! Cropper")
 new_image = st.button("New Image")
 crop_button = st.button("Crop!")
 
-gloabal_var = pick_random_img()
-
-
 if new_image:
   img_file = pick_random_img()
 aspect_choice = st.radio(label="Aspect Ratio", options=["1:1"])
@@ -24,7 +21,7 @@ aspect_ratio = aspect_dict[aspect_choice]
 
 
 
-img_file = pick_random_img()
+#img_file = pick_random_img()
 
 img = Image.open(str(base_folder) + '/' + str(img_file))
 cropped_img = st_cropper(img, realtime_update=True, box_color='#0000FF', aspect_ratio=aspect_ratio)
