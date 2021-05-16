@@ -1,5 +1,6 @@
-import streamlit as st
-from streamlit_cropper import st_cropper
-from PIL import Image
-from pick_save import pick_random_img
-import os
+pandas==1.2.0
+streamlit==0.81.1
+numpy==1.19.2
+Pillow==8.2.0
+streamlit_cropper==0.1.3
+tensorflow==2.5.0
