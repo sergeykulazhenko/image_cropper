@@ -2,7 +2,7 @@ import streamlit as st
 import os, random
 import shutil
 #os.remove('/Users/sergeykulazhenko/PycharmProjects/pythonProject/croper/img600x866_crop/.DS_Store')
-base_folder = '/Users/sergeykulazhenko/PycharmProjects/pythonProject/croper/img600x866'
+base_folder = 'img600x866'
 base_folder_crop = base_folder + '_crop'
 def pick_random_img():
     # get the list of images
@@ -34,4 +34,4 @@ def pick_random_img():
     return files_to_do[0]
 
 def save_cropped_img(cropped_img, img_file):
-    cropped_img.save('/Users/sergeykulazhenko/PycharmProjects/pythonProject/croper/img600x866_crop/' + str(img_file))
+    cropped_img.save('img600x866_crop/' + str(img_file))
