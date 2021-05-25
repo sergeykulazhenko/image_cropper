@@ -5,7 +5,7 @@ from pick_save import pick_random_img
 import random
 import os
 
-base_folder = 'img600x866'
+base_folder = '/app/img600x866'
 base_folder_crop = base_folder + '_crop'
 st.set_option('deprecation.showfileUploaderEncoding', False)
 st.header("Lookies! Cropper")
