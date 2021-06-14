@@ -4,7 +4,7 @@ import os, random
 from boto3
 import shutil
 #os.remove('/Users/sergeykulazhenko/PycharmProjects/pythonProject/croper/img600x866_crop/.DS_Store')
-base_folder = '/Users/sergeykulazhenko/PycharmProjects/pythonProject/croper/img600x866'
+base_folder = '/app/img600x866'
 base_folder_crop = base_folder + '_crop'
 def pick_random_img():
     # get the list of images
@@ -36,4 +36,4 @@ def pick_random_img():
     return files_to_do[0]
 
 def save_cropped_img(cropped_img, img_file):
-    cropped_img.save('/Users/sergeykulazhenko/PycharmProjects/pythonProject/croper/img600x866_crop/' + str(img_file))
+    cropped_img.save('/app/img600x866_crop/' + str(img_file))
