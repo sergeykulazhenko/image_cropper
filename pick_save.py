@@ -1,5 +1,7 @@
 import streamlit as st
 import os, random
+
+from boto3
 import shutil
 #os.remove('/Users/sergeykulazhenko/PycharmProjects/pythonProject/croper/img600x866_crop/.DS_Store')
 base_folder = '/Users/sergeykulazhenko/PycharmProjects/pythonProject/croper/img600x866'
