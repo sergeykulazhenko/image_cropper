@@ -44,11 +44,22 @@ def pick_random_img():
 
     # pick a random file "to do"
     print(files_to_do[0])
+    try:
+        ftp.retrbinary("RETR " + files_to_do[0], open(A, 'wb').write)
+    except:
+        print("Error")
+    print(files_to_do[0])
     return files_to_do[0]
 
-
+def load_file_trough_ftp(file_to_do):
+    file_to_do_split = file_to_do.split('/')
+    filename = file_to_do_split[2]
+    localfile = open(filename, "wb")
+    ftp.retrbinary(f"RETR {file_to_do}", localfile.write)
+    localfile.close()
+    return filename
 
 def save_cropped_img(cropped_img, img_file):
     cropped_img.save('/app/img600x866_crop/' + str(img_file))
 
-pick_random_img()
+print(load_file_trough_ftp(pick_random_img()))
