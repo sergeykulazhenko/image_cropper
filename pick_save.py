@@ -59,7 +59,9 @@ def load_file_trough_ftp(file_to_do):
     localfile.close()
     return filename
 
-def save_cropped_img(cropped_img, img_file):
-    cropped_img.save('/app/img600x866_crop/' + str(img_file))
+def save_cropped_img_ftp(cropped_img, img_file):
+    filename_split = img_file.split('/')
+    ftp.storbinary('STOR' + filename_split[2], cropped_img)
+    #cropped_img.save('/app/img600x866_crop/' + str(img_file))
 
 print(load_file_trough_ftp(pick_random_img()))
