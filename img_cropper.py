@@ -29,6 +29,6 @@ cropped_img = st_cropper(img, realtime_update=True, box_color='#0000FF', aspect_
 st.image(cropped_img)
 
 if crop_button:
-  save_cropped_img_ftp(cropped_img, img_file):
+  save_cropped_img_ftp(cropped_img, img_file)
   #os.makedirs(os.path.dirname(base_folder_crop + "/" + str(img_file)), exist_ok=True)
   #cropped_img.save(base_folder_crop + "/" + str(img_file))
