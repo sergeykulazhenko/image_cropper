@@ -1,6 +1,7 @@
 #import streamlit as st
 import os, random
 import ftplib
+from PIL import Image
 import shutil
 
 host = 'ftp4.nska.net'
@@ -59,9 +60,12 @@ def load_file_trough_ftp(file_to_do):
     localfile.close()
     return filename
 
-def save_cropped_img_ftp(cropped_img, img_file):
-    filename_split = img_file.split('/')
-    ftp.storbinary('STOR' + filename_split[2], cropped_img)
+def save_cropped_img_ftp():
+    #filename_split = img_file.split('/')
+    img = open('AD093EMJLZE4_11419934_4_v1_2x.jpg', 'rb')
+    ftp.storbinary('STOR tmp/AD093EMJLZE4_11419934_4_v1_2x.jpg', img)
     #cropped_img.save('/app/img600x866_crop/' + str(img_file))
 
-print(load_file_trough_ftp(pick_random_img()))
+
+#load_file_trough_ftp(pick_random_img())
+save_cropped_img_ftp()
