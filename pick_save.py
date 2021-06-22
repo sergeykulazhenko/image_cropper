@@ -64,10 +64,4 @@ def save_cropped_img_ftp(cropped_img, img_file):
     img = cropped_img
     img.save(filename_split[2])
     img = open(filename_split[2], 'rb')
-    ftp.storbinary('STOR ' + base_folder_crop + '/' + str(filename_split[1] + '/' + str(filename_split[2]), img)
-    img.close()
-    #cropped_img.save('/app/img600x866_crop/' + str(img_file))
-
-
-#load_file_trough_ftp(pick_random_img())
-#save_cropped_img_ftp('//AD093EMJLZE4_11419934_4_v1_2x.jpg')
+    ftp.storbinary('STOR ' + base_folder_crop + '/' + str(filename_split[1]) + '/' + str(filename_split[2]), img)
