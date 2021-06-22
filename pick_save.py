@@ -62,10 +62,12 @@ def load_file_trough_ftp(file_to_do):
 
 def save_cropped_img_ftp():
     #filename_split = img_file.split('/')
-    img = open('AD093EMJLZE4_11419934_4_v1_2x.jpg', 'rb')
+    img = Image.open('AD093EMJLZE4_11419934_4_v1_2x.jpg')
+    img.save('22AD093EMJLZE4_11419934_4_v1_2x.jpg')
+    img = open('22AD093EMJLZE4_11419934_4_v1_2x.jpg', 'rb')
     ftp.storbinary('STOR tmp/AD093EMJLZE4_11419934_4_v1_2x.jpg', img)
     #cropped_img.save('/app/img600x866_crop/' + str(img_file))
 
 
 #load_file_trough_ftp(pick_random_img())
-#save_cropped_img_ftp()
+save_cropped_img_ftp()
