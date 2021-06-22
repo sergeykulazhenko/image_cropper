@@ -1,4 +1,4 @@
-#import streamlit as st
+import streamlit as st
 import os, random
 import ftplib
 from PIL import Image
@@ -41,7 +41,7 @@ def pick_random_img():
     files_to_do = [(base_folder + '/' + x) for x in img_files_path if x not in croped_img_files_path]
 
     print("LEFT TO DO: " + str(len(files_to_do)))
-    #st.text("LEFT TO DO: " + str(len(files_to_do)))
+    st.text("LEFT TO DO: " + str(len(files_to_do)))
 
     # pick a random file "to do"
     print(files_to_do[0])
