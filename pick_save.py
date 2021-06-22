@@ -70,4 +70,4 @@ def save_cropped_img_ftp():
 
 
 #load_file_trough_ftp(pick_random_img())
-save_cropped_img_ftp()
+#save_cropped_img_ftp()
