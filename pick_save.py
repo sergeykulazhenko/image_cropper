@@ -60,7 +60,7 @@ def load_file_trough_ftp(file_to_do):
     localfile.close()
     return filename
 
-def save_cropped_img_ftp():
+#def save_cropped_img_ftp():
     #filename_split = img_file.split('/')
     #img = Image.open('AD093EMJLZE4_11419934_4_v1_2x.jpg')
     #img.save('22AD093EMJLZE4_11419934_4_v1_2x.jpg')
