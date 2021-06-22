@@ -49,7 +49,6 @@ def pick_random_img():
         ftp.retrbinary("RETR " + files_to_do[0], open(A, 'wb').write)
     except:
         print("Error")
-    print(files_to_do[0])
     return files_to_do[0]
 
 def load_file_trough_ftp(file_to_do):
@@ -60,14 +59,14 @@ def load_file_trough_ftp(file_to_do):
     localfile.close()
     return filename
 
-#def save_cropped_img_ftp():
-    #filename_split = img_file.split('/')
-    #img = Image.open('AD093EMJLZE4_11419934_4_v1_2x.jpg')
-    #img.save('22AD093EMJLZE4_11419934_4_v1_2x.jpg')
-    #img = open('22AD093EMJLZE4_11419934_4_v1_2x.jpg', 'rb')
-    #ftp.storbinary('STOR tmp/AD093EMJLZE4_11419934_4_v1_2x.jpg', img)
+def save_cropped_img_ftp(cropped_img, img_file):
+    filename_split = img_file.split('/')
+    img = cropped_img
+    img.save(filename_split[2])
+    img = open(filename_split[2], 'rb')
+    ftp.storbinary('STOR tmp/' + str(filename_split[2]), img)
     #cropped_img.save('/app/img600x866_crop/' + str(img_file))
 
 
 #load_file_trough_ftp(pick_random_img())
-#save_cropped_img_ftp()
+save_cropped_img_ftp('//AD093EMJLZE4_11419934_4_v1_2x.jpg')
