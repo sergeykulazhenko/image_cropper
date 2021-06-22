@@ -11,7 +11,7 @@ ftp = ftplib.FTP(host, ftp_user, ftp_password)
 
 
 base_folder = 'img600x866'
-base_folder_crop = base_folder + '_crop'
+base_folder_crop = base_folder + '_crop_t'
 
 def pick_random_img():
     # get the list of images
@@ -22,7 +22,7 @@ def pick_random_img():
         n_folder_element_list = ftp.nlst(el)
         for i in n_folder_element_list:
             img_files_path.append(i)
-    img_files_path = [x.replace('img600x866/', '') for x in img_files_path if ".jpg" in x ]
+    img_files_path = [x.replace(base_folder + '/', '') for x in img_files_path if ".jpg" in x ]
     print("TOTAL IMAGES: " + str(len(img_files_path)))
 
     # get the list of cropped files
@@ -33,12 +33,12 @@ def pick_random_img():
         n_folder_element_list = ftp.nlst(el)
         for i in n_folder_element_list:
             croped_img_files_path.append(i)
-    croped_img_files_path = [x.replace('img600x866_crop/', '') for x in croped_img_files_path if ".jpg" in x]
+    croped_img_files_path = [x.replace(base_folder_crop + '/', '') for x in croped_img_files_path if ".jpg" in x]
     print(croped_img_files_path)
     print("CROPPED IMAGES: " + str(len(croped_img_files_path)))
 
     # get the list of "files to do"
-    files_to_do = [('img600x866/' + x) for x in img_files_path if x not in croped_img_files_path]
+    files_to_do = [(base_folder + '/' + x) for x in img_files_path if x not in croped_img_files_path]
 
     print("LEFT TO DO: " + str(len(files_to_do)))
     #st.text("LEFT TO DO: " + str(len(files_to_do)))
@@ -64,7 +64,8 @@ def save_cropped_img_ftp(cropped_img, img_file):
     img = cropped_img
     img.save(filename_split[2])
     img = open(filename_split[2], 'rb')
-    ftp.storbinary('STOR tmp/' + str(filename_split[2]), img)
+    ftp.storbinary('STOR ' + base_folder_crop + '/' + str(filename_split[1] + '/' + str(filename_split[2]), img)
+    img.close()
     #cropped_img.save('/app/img600x866_crop/' + str(img_file))
 
 
