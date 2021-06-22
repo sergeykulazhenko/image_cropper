@@ -69,4 +69,4 @@ def save_cropped_img_ftp(cropped_img, img_file):
 
 
 #load_file_trough_ftp(pick_random_img())
-save_cropped_img_ftp('//AD093EMJLZE4_11419934_4_v1_2x.jpg')
+#save_cropped_img_ftp('//AD093EMJLZE4_11419934_4_v1_2x.jpg')
