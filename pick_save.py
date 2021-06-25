@@ -22,7 +22,7 @@ def pick_random_img():
     # pick a random file "to do"
     #print(files_to_do[0])
     with open('list_to_do.txt') as f:
-        first_line = f.readline()
+        first_line = f.rstrip()
 
     try:
         ftp.retrbinary("RETR " + first_line, open(A, 'wb').write)
