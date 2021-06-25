@@ -85,4 +85,3 @@ def test():
     with open('list_to_do.txt', encoding="utf-8") as f:
         first_line = f.readline()
     print(first_line)
-
