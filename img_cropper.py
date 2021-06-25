@@ -11,7 +11,7 @@ base_folder_crop = base_folder + '_crop'
 st.set_option('deprecation.showfileUploaderEncoding', False)
 st.header("Lookies! Cropper")
 
-create_list_of_files()
+#create_list_of_files()
 
 new_image = st.button("New Image")
 crop_button = st.button("Crop!")
