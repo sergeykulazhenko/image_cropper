@@ -11,6 +11,8 @@ base_folder_crop = base_folder + '_crop'
 st.set_option('deprecation.showfileUploaderEncoding', False)
 st.header("Lookies! Cropper")
 
+create_list_of_files()
+
 new_image = st.button("New Image")
 crop_button = st.button("Crop!")
 list_button = st.button("Index Images")
@@ -22,7 +24,7 @@ aspect_dict = {"1:1": (1, 1)}
 aspect_ratio = aspect_dict[aspect_choice]
 
 
-create_list_of_files()
+
 img_file = pick_random_img()
 
 img = Image.open(load_file_trough_ftp(img_file))

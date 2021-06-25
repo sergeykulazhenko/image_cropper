@@ -21,8 +21,8 @@ def pick_random_img():
 
     # pick a random file "to do"
     #print(files_to_do[0])
-    with open('list_to_do.txt') as f:
-        first_line = f.rstrip()
+    with open('list_to_do.txt', encoding="utf-8") as f:
+        first_line = f.readline()
 
     try:
         ftp.retrbinary("RETR " + first_line, open(A, 'wb').write)
@@ -70,7 +70,6 @@ def create_list_of_files():
             for i in n_folder_element_list:
                 croped_img_files_path.append(i)
         croped_img_files_path = [x.replace(base_folder_crop + '/', '') for x in croped_img_files_path if ".jpg" in x]
-        print(croped_img_files_path)
         print("CROPPED IMAGES: " + str(len(croped_img_files_path)))
 
         # get the list of "files to do"
@@ -81,4 +80,9 @@ def create_list_of_files():
         for element in files_to_do:
             textfile.write(element + "\n")
         textfile.close()
+
+def test():
+    with open('list_to_do.txt', encoding="utf-8") as f:
+        first_line = f.readline()
+    print(first_line)
 
