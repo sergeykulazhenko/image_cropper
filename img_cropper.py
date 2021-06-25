@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_cropper import st_cropper
 from PIL import Image
-from pick_save import pick_random_img, load_file_trough_ftp, save_cropped_img_ftp
+from pick_save import pick_random_img, load_file_trough_ftp, save_cropped_img_ftp, create_list_of_files
 import random
 import os
 
@@ -13,6 +13,7 @@ st.header("Lookies! Cropper")
 
 new_image = st.button("New Image")
 crop_button = st.button("Crop!")
+list_button = st.button("Index Images")
 
 if new_image:
   img_file = pick_random_img()
@@ -21,7 +22,7 @@ aspect_dict = {"1:1": (1, 1)}
 aspect_ratio = aspect_dict[aspect_choice]
 
 
-
+create_list_of_files()
 img_file = pick_random_img()
 
 img = Image.open(load_file_trough_ftp(img_file))
@@ -32,3 +33,6 @@ if crop_button:
   save_cropped_img_ftp(cropped_img, img_file)
   #os.makedirs(os.path.dirname(base_folder_crop + "/" + str(img_file)), exist_ok=True)
   #cropped_img.save(base_folder_crop + "/" + str(img_file))
+
+if list_button:
+  create_list_of_files()

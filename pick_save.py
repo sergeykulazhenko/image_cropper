@@ -1,5 +1,6 @@
 import streamlit as st
 import os, random
+import os.path
 import ftplib
 from PIL import Image
 import shutil
@@ -14,42 +15,20 @@ base_folder = 'img600x866'
 base_folder_crop = base_folder + '_crop_t'
 
 def pick_random_img():
-    # get the list of images
-    img_files_path = []
-    base_folder_el_list = ftp.nlst(base_folder)
-    base_folder_el_list = [x for x in base_folder_el_list if "." not in x]
-    for el in base_folder_el_list:
-        n_folder_element_list = ftp.nlst(el)
-        for i in n_folder_element_list:
-            img_files_path.append(i)
-    img_files_path = [x.replace(base_folder + '/', '') for x in img_files_path if ".jpg" in x ]
-    print("TOTAL IMAGES: " + str(len(img_files_path)))
 
-    # get the list of cropped files
-    croped_img_files_path = []
-    base_folder_crop_el_list = ftp.nlst(base_folder_crop)
-    base_folder_crop_el_list = [x for x in base_folder_crop_el_list if "." not in x]
-    for el in base_folder_crop_el_list:
-        n_folder_element_list = ftp.nlst(el)
-        for i in n_folder_element_list:
-            croped_img_files_path.append(i)
-    croped_img_files_path = [x.replace(base_folder_crop + '/', '') for x in croped_img_files_path if ".jpg" in x]
-    print(croped_img_files_path)
-    print("CROPPED IMAGES: " + str(len(croped_img_files_path)))
-
-    # get the list of "files to do"
-    files_to_do = [(base_folder + '/' + x) for x in img_files_path if x not in croped_img_files_path]
-
-    print("LEFT TO DO: " + str(len(files_to_do)))
-    st.text("LEFT TO DO: " + str(len(files_to_do)))
+    #print("LEFT TO DO: " + str(len(files_to_do)))
+    #st.text("LEFT TO DO: " + str(len(files_to_do)))
 
     # pick a random file "to do"
-    print(files_to_do[0])
+    #print(files_to_do[0])
+    with open('list_to_do.txt') as f:
+        first_line = f.readline()
+
     try:
-        ftp.retrbinary("RETR " + files_to_do[0], open(A, 'wb').write)
+        ftp.retrbinary("RETR " + first_line, open(A, 'wb').write)
     except:
         print("Error")
-    return files_to_do[0]
+    return first_line
 
 def load_file_trough_ftp(file_to_do):
     file_to_do_split = file_to_do.split('/')
@@ -65,3 +44,41 @@ def save_cropped_img_ftp(cropped_img, img_file):
     img.save(filename_split[2])
     img = open(filename_split[2], 'rb')
     ftp.storbinary('STOR ' + base_folder_crop + '/' + str(filename_split[1]) + '/' + str(filename_split[2]), img)
+
+def create_list_of_files():
+    if os.path.isfile("list_to_do.txt") == True:
+        print("True")
+    else:
+
+        # get the list of images
+        img_files_path = []
+        base_folder_el_list = ftp.nlst(base_folder)
+        base_folder_el_list = [x for x in base_folder_el_list if "." not in x]
+        for el in base_folder_el_list:
+            n_folder_element_list = ftp.nlst(el)
+            for i in n_folder_element_list:
+                img_files_path.append(i)
+        img_files_path = [x.replace(base_folder + '/', '') for x in img_files_path if ".jpg" in x]
+        print("TOTAL IMAGES: " + str(len(img_files_path)))
+
+        # get the list of cropped files
+        croped_img_files_path = []
+        base_folder_crop_el_list = ftp.nlst(base_folder_crop)
+        base_folder_crop_el_list = [x for x in base_folder_crop_el_list if "." not in x]
+        for el in base_folder_crop_el_list:
+            n_folder_element_list = ftp.nlst(el)
+            for i in n_folder_element_list:
+                croped_img_files_path.append(i)
+        croped_img_files_path = [x.replace(base_folder_crop + '/', '') for x in croped_img_files_path if ".jpg" in x]
+        print(croped_img_files_path)
+        print("CROPPED IMAGES: " + str(len(croped_img_files_path)))
+
+        # get the list of "files to do"
+        files_to_do = [(base_folder + '/' + x) for x in img_files_path if x not in croped_img_files_path]
+        textfile = open("list_to_do.txt", "w")
+
+        #write to txt
+        for element in files_to_do:
+            textfile.write(element + "\n")
+        textfile.close()
+
