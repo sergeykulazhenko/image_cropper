@@ -104,5 +104,5 @@ def test():
 
     #print(first_line)
 
-pick_random_img()
+#pick_random_img()
 #encoding="utf-8"
