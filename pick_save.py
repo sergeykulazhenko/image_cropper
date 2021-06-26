@@ -27,7 +27,7 @@ def pick_random_img():
         list_of_files.append(stripped_line)
     a_file.close()
     #print("LEFT TO DO: " + str(len(files_to_do)))
-    #st.text("LEFT TO DO: " + str(len(files_to_do)))
+    st.text("LEFT TO DO: " + str(len(list_of_files)))
 
     # pick a random file "to do"
     #print(files_to_do[0])
