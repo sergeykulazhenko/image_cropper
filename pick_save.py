@@ -54,12 +54,16 @@ def save_cropped_img_ftp(cropped_img, img_file):
     img.save(filename_split[2])
     img = open(filename_split[2], 'rb')
     ftp.storbinary('STOR ' + base_folder_crop + '/' + str(filename_split[1]) + '/' + str(filename_split[2]), img)
-    del list_of_files[0]
-    textfile = open("list_to_do.txt", "w")
+    with open('list_to_do.txt', 'r') as fin:
+        data = fin.read().splitlines(True)
+    with open('list_to_do.txt', 'w') as fout:
+        fout.writelines(data[1:])
+    #del list_of_files[0]
+    #textfile = open("list_to_do.txt", "w")
     # write to txt
-    for element in list_of_files:
-        textfile.write(element + "\n")
-    textfile.close()
+    #for element in list_of_files:
+    #    textfile.write(element + "\n")
+    #textfile.close()
 
 
 def create_list_of_files():
