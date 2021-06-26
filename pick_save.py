@@ -12,7 +12,7 @@ ftp = ftplib.FTP(host, ftp_user, ftp_password)
 
 
 base_folder = 'img600x866'
-base_folder_crop = base_folder + '_crop_t'
+base_folder_crop = base_folder + '_crop'
 
 
 list_of_files = []
