@@ -21,8 +21,17 @@ def pick_random_img():
 
     # pick a random file "to do"
     #print(files_to_do[0])
-    with open('list_to_do.txt', encoding="utf-8") as f:
-        first_line = f.readline()
+    list_of_files = []
+    a_file = open('list_to_do.txt', "r")
+    for line in a_file:
+        stripped_line = line.strip()
+        print(stripped_line)
+        list_of_files.append(stripped_line)
+        # line_list = stripped_line.split()
+        # list_of_lists.append(line_list)
+    a_file.close()
+    first_line = list_of_files[0]
+
 
     try:
         ftp.retrbinary("RETR " + first_line, open(A, 'wb').write)
@@ -82,6 +91,18 @@ def create_list_of_files():
         textfile.close()
 
 def test():
-    with open('list_to_do.txt', encoding="utf-8") as f:
-        first_line = f.readline()
-    print(first_line)
+    a_file = open('list_to_do.txt', "r")
+    for line in a_file:
+        stripped_line = line.strip()
+        print(stripped_line)
+        break
+    #line_list = stripped_line.split()
+    #list_of_lists.append(line_list)
+    a_file.close()
+    #print(list_of_lists)
+
+
+    #print(first_line)
+
+pick_random_img()
+#encoding="utf-8"
