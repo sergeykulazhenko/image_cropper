@@ -20,6 +20,7 @@ list_of_files = []
 
 
 def pick_random_img():
+    list_of_files = []
     a_file = open('list_to_do.txt', "r")
     for line in a_file:
         stripped_line = line.strip()
