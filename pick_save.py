@@ -1,26 +1,26 @@
 import streamlit as st
-import os, random
+import os
 import os.path
 import ftplib
-from PIL import Image
-import shutil
 
 host = 'ftp4.nska.net'
 ftp_user = 'test1@lookies.by'
 ftp_password = 'U4hq0oLn'
 ftp = ftplib.FTP(host, ftp_user, ftp_password)
 
-
 base_folder = 'img600x866'
 base_folder_crop = base_folder + '_crop'
 
-
 list_of_files = []
-
-
 
 def pick_random_img():
     list_of_files = []
+
+    host = 'ftp4.nska.net'
+    ftp_user = 'test1@lookies.by'
+    ftp_password = 'U4hq0oLn'
+    ftp = ftplib.FTP(host, ftp_user, ftp_password)
+
     a_file = open('list_to_do.txt', "r")
     for line in a_file:
         stripped_line = line.strip()
@@ -31,8 +31,6 @@ def pick_random_img():
     st.text("LEFT TO DO: " + str(len(list_of_files)))
 
     # pick a random file "to do"
-    #print(files_to_do[0])
-
     first_line = list_of_files[0]
     try:
         ftp.retrbinary("RETR " + first_line, open(A, 'wb').write)
@@ -65,10 +63,9 @@ def save_cropped_img_ftp(cropped_img, img_file):
     #    textfile.write(element + "\n")
     #textfile.close()
 
-
 def create_list_of_files():
     if os.path.isfile("list_to_do.txt"):
-        print("True")
+        break
     else:
         # get the list of images
         img_files_path = []
