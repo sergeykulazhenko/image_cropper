@@ -65,7 +65,7 @@ def save_cropped_img_ftp(cropped_img, img_file):
 
 def create_list_of_files():
     if os.path.isfile("list_to_do.txt"):
-        break
+        print("Error")
     else:
         # get the list of images
         img_files_path = []
