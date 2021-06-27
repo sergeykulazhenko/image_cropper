@@ -33,7 +33,7 @@ def pick_random_img():
     # pick a random file "to do"
     first_line = list_of_files[0]
     try:
-        ftp.retrbinary("RETR " + first_line, open(A, 'wb').write)
+        ftp.retrbinary("RETR " + first_line, open(first_line, 'wb').write)
     except:
         print("Error")
     return first_line
