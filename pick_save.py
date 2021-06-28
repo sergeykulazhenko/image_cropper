@@ -6,7 +6,7 @@ import ftplib
 host = 'ftp4.nska.net'
 ftp_user = 'test1@lookies.by'
 ftp_password = 'U4hq0oLn'
-ftp = ftplib.FTP(host, ftp_user, ftp_password)
+
 
 base_folder = 'img600x866'
 base_folder_crop = base_folder + '_crop'
@@ -49,17 +49,13 @@ def save_cropped_img_ftp(cropped_img, img_file):
     img = cropped_img
     img.save(filename_split[2])
     img = open(filename_split[2], 'rb')
+    ftp = ftplib.FTP(host, ftp_user, ftp_password)
     ftp.storbinary('STOR ' + base_folder_crop + '/' + str(filename_split[1]) + '/' + str(filename_split[2]), img)
     with open('list_to_do.txt', 'r') as fin:
         data = fin.read().splitlines(True)
     with open('list_to_do.txt', 'w') as fout:
         fout.writelines(data[1:])
-    #del list_of_files[0]
-    #textfile = open("list_to_do.txt", "w")
-    # write to txt
-    #for element in list_of_files:
-    #    textfile.write(element + "\n")
-    #textfile.close()
+    ftp.quit()
 
 def create_list_of_files():
     if os.path.isfile("list_to_do.txt"):
