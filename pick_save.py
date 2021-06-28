@@ -15,10 +15,6 @@ list_of_files = []
 
 def pick_random_img():
     list_of_files = []
-
-    host = 'ftp4.nska.net'
-    ftp_user = 'test1@lookies.by'
-    ftp_password = 'U4hq0oLn'
     ftp = ftplib.FTP(host, ftp_user, ftp_password)
 
     a_file = open('list_to_do.txt', "r")
@@ -27,7 +23,6 @@ def pick_random_img():
         print(stripped_line)
         list_of_files.append(stripped_line)
     a_file.close()
-    #print("LEFT TO DO: " + str(len(files_to_do)))
     st.text("LEFT TO DO: " + str(len(list_of_files)))
 
     # pick a random file "to do"
@@ -36,14 +31,17 @@ def pick_random_img():
         ftp.retrbinary("RETR " + first_line, open(first_line, 'wb').write)
     except:
         print("Error")
+    ftp.quit()
     return first_line
 
 def load_file_trough_ftp(file_to_do):
     file_to_do_split = file_to_do.split('/')
     filename = file_to_do_split[2]
     localfile = open(filename, "wb")
+    ftp = ftplib.FTP(host, ftp_user, ftp_password)
     ftp.retrbinary(f"RETR {file_to_do}", localfile.write)
     localfile.close()
+    ftp.quit()
     return filename
 
 def save_cropped_img_ftp(cropped_img, img_file):
@@ -69,6 +67,7 @@ def create_list_of_files():
     else:
         # get the list of images
         img_files_path = []
+        ftp = ftplib.FTP(host, ftp_user, ftp_password)
         base_folder_el_list = ftp.nlst(base_folder)
         base_folder_el_list = [x for x in base_folder_el_list if "." not in x]
         for el in base_folder_el_list:
@@ -97,4 +96,5 @@ def create_list_of_files():
         for element in files_to_do:
             textfile.write(element + "\n")
         textfile.close()
+        ftp.quit()
 
