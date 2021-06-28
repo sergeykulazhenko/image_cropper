@@ -13,7 +13,7 @@ st.header("Lookies! Cropper")
 
 create_list_of_files()
 
-reconnect = st.button("Reconnect")
+
 new_image = st.button("New Image")
 crop_button = st.button("Crop!")
 list_button = st.button("Index Images")
@@ -37,9 +37,3 @@ if crop_button:
 
 if list_button:
   create_list_of_files()
-
-if reconnect:
-  host = 'ftp4.nska.net'
-  ftp_user = 'test1@lookies.by'
-  ftp_password = 'U4hq0oLn'
-  ftp = ftplib.FTP(host, ftp_user, ftp_password)
