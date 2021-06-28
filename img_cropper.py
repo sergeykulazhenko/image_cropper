@@ -34,6 +34,6 @@ st.image(cropped_img)
 
 if crop_button:
   save_cropped_img_ftp(cropped_img, img_file)
-
+  img_file = pick_random_img()
 if list_button:
   create_list_of_files()
