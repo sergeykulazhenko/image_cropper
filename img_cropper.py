@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_cropper import st_cropper
 from PIL import Image
 from pick_save import pick_random_img, load_file_trough_ftp, save_cropped_img_ftp, create_list_of_files
-import ftplib
+
 
 
 
@@ -19,7 +19,7 @@ crop_button = st.button("Crop!")
 list_button = st.button("Index Images")
 
 if new_image:
-  img_file = pick_random_img()
+  #img_file = pick_random_img()
 aspect_choice = st.radio(label="Aspect Ratio", options=["1:1"])
 aspect_dict = {"1:1": (1, 1)}
 aspect_ratio = aspect_dict[aspect_choice]
@@ -34,6 +34,5 @@ st.image(cropped_img)
 
 if crop_button:
   save_cropped_img_ftp(cropped_img, img_file)
-  img_file = pick_random_img()
 if list_button:
   create_list_of_files()
