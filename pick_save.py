@@ -23,17 +23,17 @@ def pick_random_img():
         stripped_line = line.strip()
         list_of_files.append(stripped_line)
     a_file.close()
-    st.text("LEFT TO DO: " + str(len(list_of_files)))
+
 
     # removing "skip" files
-    skip_list = open("skip_list.txt", 'a')
+    skip_list = open("skip_list.txt", 'rb')
     for line in skip_list:
         stripped_line = line.strip()
         list_of_skip.append(stripped_line)
     skip_list.close()
     list_of_files = [x for x in list_of_files if x not in list_of_skip]
 
-
+    st.text("LEFT TO DO: " + str(len(list_of_files)))
     # pick a random file "to do"
     first_line = list_of_files[0]
     try:
