@@ -20,7 +20,7 @@ list_button = st.button("Index Images")
 skip_button = st.button("Skip Image")
 
 if new_image:
-  #img_file = pick_random_img()
+  img_file = pick_random_img()
 aspect_choice = st.radio(label="Aspect Ratio", options=["1:1"])
 aspect_dict = {"1:1": (1, 1)}
 aspect_ratio = aspect_dict[aspect_choice]
