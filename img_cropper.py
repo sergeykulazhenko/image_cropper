@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_cropper import st_cropper
 from PIL import Image
-from pick_save import pick_random_img, load_file_trough_ftp, save_cropped_img_ftp, create_list_of_files
+from pick_save import pick_random_img, load_file_trough_ftp, save_cropped_img_ftp, create_list_of_files, skip_file
 
 
 
@@ -17,6 +17,7 @@ create_list_of_files()
 new_image = st.button("New Image")
 crop_button = st.button("Crop!")
 list_button = st.button("Index Images")
+skip_button = st.button("Skip Image")
 
 if new_image:
   #img_file = pick_random_img()
@@ -36,3 +37,5 @@ if crop_button:
   save_cropped_img_ftp(cropped_img, img_file)
 if list_button:
   create_list_of_files()
+if skip_button:
+  skip_file(img_file)
