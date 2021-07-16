@@ -26,7 +26,7 @@ def pick_random_img():
 
 
     # removing "skip" files
-    skip_list = open("skip_list.txt", 'rb')
+    skip_list = open("skip_list.txt", 'r')
     for line in skip_list:
         stripped_line = line.strip()
         list_of_skip.append(stripped_line)
