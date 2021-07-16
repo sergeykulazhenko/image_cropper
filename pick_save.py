@@ -15,15 +15,24 @@ list_of_files = []
 
 def pick_random_img():
     list_of_files = []
+    list_of_skip = []
     ftp = ftplib.FTP(host, ftp_user, ftp_password)
 
     a_file = open('list_to_do.txt', "r")
     for line in a_file:
         stripped_line = line.strip()
-        print(stripped_line)
         list_of_files.append(stripped_line)
     a_file.close()
     st.text("LEFT TO DO: " + str(len(list_of_files)))
+
+    # removing "skip" files
+    skip_list = open("skip_list.txt", 'a')
+    for line in skip_list:
+        stripped_line = line.strip()
+        list_of_skip.append(stripped_line)
+    skip_list.close()
+    list_of_files = [x for x in list_of_files if x not in list_of_skip]
+
 
     # pick a random file "to do"
     first_line = list_of_files[0]
@@ -31,6 +40,8 @@ def pick_random_img():
         ftp.retrbinary("RETR " + first_line, open(first_line, 'wb').write)
     except:
         print("Error")
+
+
     ftp.quit()
     return first_line
 
