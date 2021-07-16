@@ -2,6 +2,7 @@ import streamlit as st
 import os
 import os.path
 import ftplib
+from pathlib import Path
 
 host = 'ftp4.nska.net'
 ftp_user = 'test1@lookies.by'
@@ -26,11 +27,21 @@ def pick_random_img():
 
 
     # removing "skip" files
+
+    my_file = Path("skip_list.txt")
+    if my_file.is_file():
+        pass
+    else:
+        try:
+            ftp.retrbinary("RETR " + "skip_list.txt", open("skip_list.txt", 'wb').write)
+        except:
+            print("Error")
     skip_list = open("skip_list.txt", 'r')
     for line in skip_list:
         stripped_line = line.strip()
         list_of_skip.append(stripped_line)
     skip_list.close()
+
     list_of_files = [x for x in list_of_files if x not in list_of_skip]
 
     st.text("LEFT TO DO: " + str(len(list_of_files)))
