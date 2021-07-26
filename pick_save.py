@@ -66,6 +66,7 @@ def save_cropped_img_ftp(cropped_img, img_file):
     img = open(filename_split[2], 'rb')
     ftp = ftplib.FTP(host, ftp_user, ftp_password)
     ftp.storbinary('STOR ' + base_folder_crop + '/' + str(filename_split[1]) + '/' + str(filename_split[2]), img)
+    ftp.quit()
 
     #Removing the firs element of todo list
     with open("list_to_do.txt", 'r') as fin:
@@ -73,11 +74,11 @@ def save_cropped_img_ftp(cropped_img, img_file):
     with open("list_to_do.txt", 'w') as fout:
         fout.writelines(data[1:])
 
-    ftp.quit()
+
 
 def create_list_of_files():
     if os.path.isfile("list_to_do.txt"):
-        pass
+        print(' ')
     else:
         # get the list of images
         img_files_path = []
