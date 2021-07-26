@@ -7,8 +7,6 @@ from pathlib import Path
 host = 'ftp4.nska.net'
 ftp_user = 'test1@lookies.by'
 ftp_password = 'U4hq0oLn'
-
-
 base_folder = 'img600x866'
 base_folder_crop = base_folder + '_crop'
 
@@ -19,23 +17,17 @@ def pick_random_img():
     list_of_skip = []
     ftp = ftplib.FTP(host, ftp_user, ftp_password)
 
-    a_file = open('list_to_do.txt', "r")
+    a_file = open("list_to_do.txt", 'r')
     for line in a_file:
         stripped_line = line.strip()
         list_of_files.append(stripped_line)
     a_file.close()
 
-
     # removing "skip" files
-
-    my_file = Path("skip_list.txt")
-    if my_file.is_file():
-        pass
-    else:
-        try:
-            ftp.retrbinary("RETR " + "skip_list.txt", open("skip_list.txt", 'wb').write)
-        except:
-            print("Error")
+    try:
+        ftp.retrbinary("RETR " + "skip_list.txt", open("skip_list.txt", 'wb').write)
+    except:
+        print("Error")
     skip_list = open("skip_list.txt", 'r')
     for line in skip_list:
         stripped_line = line.strip()
@@ -51,7 +43,6 @@ def pick_random_img():
         ftp.retrbinary("RETR " + first_line, open(first_line, 'wb').write)
     except:
         print("Error")
-
 
     ftp.quit()
     return first_line
@@ -84,7 +75,7 @@ def save_cropped_img_ftp(cropped_img, img_file):
 
 def create_list_of_files():
     if os.path.isfile("list_to_do.txt"):
-        print("Error")
+        pass
     else:
         # get the list of images
         img_files_path = []
@@ -96,7 +87,6 @@ def create_list_of_files():
             for i in n_folder_element_list:
                 img_files_path.append(i)
         img_files_path = [x.replace(base_folder + '/', '') for x in img_files_path if ".jpg" in x]
-        print("TOTAL IMAGES: " + str(len(img_files_path)))
 
         # get the list of cropped files
         croped_img_files_path = []
