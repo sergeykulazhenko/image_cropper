@@ -128,6 +128,12 @@ def skip_file(img_file):
     ftp.storbinary('STOR ' + "skip_list.txt", skip_list)
     ftp.quit()
 
+def delete_tmp_file(img_file_name):
+    print(img_file_name)
+    if os.path.exists(img_file_name):
+        os.remove(img_file_name)
+    else:
+        pass
 
 #create_list_of_files()
 #first_line = pick_random_img()
