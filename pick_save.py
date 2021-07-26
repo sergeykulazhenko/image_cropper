@@ -36,13 +36,15 @@ def pick_random_img():
 
     list_of_files = [x for x in list_of_files if x not in list_of_skip]
 
-    st.text("LEFT TO DO: " + str(len(list_of_files)))
-    # pick a random file "to do"
+    #st.text("LEFT TO DO: " + str(len(list_of_files)))
+    # pick a file "to do"
     first_line = list_of_files[0]
-    try:
-        ftp.retrbinary("RETR " + first_line, open(first_line, 'wb').write)
-    except:
-        print("Error")
+    #try:
+    #    #ftp.retrbinary(f"RETR {file_to_do}", localfile.write)
+    #    ftp.retrbinary("RETR " + first_line, open(first_line, 'wb').write)
+    #except:
+    #    print(first_line)
+    #    print("Error")
 
     ftp.quit()
     return first_line
@@ -66,9 +68,9 @@ def save_cropped_img_ftp(cropped_img, img_file):
     ftp.storbinary('STOR ' + base_folder_crop + '/' + str(filename_split[1]) + '/' + str(filename_split[2]), img)
 
     #Removing the firs element of todo list
-    with open('list_to_do.txt', 'r') as fin:
+    with open("list_to_do.txt", 'r') as fin:
         data = fin.read().splitlines(True)
-    with open('list_to_do.txt', 'w') as fout:
+    with open("list_to_do.txt", 'w') as fout:
         fout.writelines(data[1:])
 
     ftp.quit()
@@ -99,7 +101,7 @@ def create_list_of_files():
         croped_img_files_path = [x.replace(base_folder_crop + '/', '') for x in croped_img_files_path if ".jpg" in x]
         print("CROPPED IMAGES: " + str(len(croped_img_files_path)))
 
-        # get the list of "files to do"
+        # get the list of "files to do" by removing cropped files
         files_to_do = [(base_folder + '/' + x) for x in img_files_path if x not in croped_img_files_path]
         textfile = open("list_to_do.txt", "w")
 
@@ -107,6 +109,7 @@ def create_list_of_files():
         for element in files_to_do:
             textfile.write(element + "\n")
         textfile.close()
+
         ftp.quit()
 
 def skip_file(img_file):
@@ -124,3 +127,7 @@ def skip_file(img_file):
     ftp.storbinary('STOR ' + "skip_list.txt", skip_list)
     ftp.quit()
 
+
+#create_list_of_files()
+#first_line = pick_random_img()
+#file_name = load_file_trough_ftp(first_line)
