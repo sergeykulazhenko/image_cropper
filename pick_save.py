@@ -39,12 +39,6 @@ def pick_random_img():
     st.text("LEFT TO DO: " + str(len(list_of_files)))
     # pick a file "to do"
     first_line = list_of_files[0]
-    #try:
-    #    #ftp.retrbinary(f"RETR {file_to_do}", localfile.write)
-    #    ftp.retrbinary("RETR " + first_line, open(first_line, 'wb').write)
-    #except:
-    #    print(first_line)
-    #    print("Error")
 
     ftp.quit()
     return first_line
