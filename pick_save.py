@@ -36,7 +36,7 @@ def pick_random_img():
 
     list_of_files = [x for x in list_of_files if x not in list_of_skip]
 
-    #st.text("LEFT TO DO: " + str(len(list_of_files)))
+    st.text("LEFT TO DO: " + str(len(list_of_files)))
     # pick a file "to do"
     first_line = list_of_files[0]
     #try:
@@ -100,7 +100,6 @@ def create_list_of_files():
             for i in n_folder_element_list:
                 croped_img_files_path.append(i)
         croped_img_files_path = [x.replace(base_folder_crop + '/', '') for x in croped_img_files_path if ".jpg" in x]
-        print("CROPPED IMAGES: " + str(len(croped_img_files_path)))
 
         # get the list of "files to do" by removing cropped files
         files_to_do = [(base_folder + '/' + x) for x in img_files_path if x not in croped_img_files_path]
