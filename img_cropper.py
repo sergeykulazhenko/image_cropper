@@ -33,6 +33,10 @@ if crop_button:
     delete_tmp_file(img_file_name)
 
 if list_button:
+    if os.path.exists("list_to_do.txt"):
+        os.remove("list_to_do.txt")
+    else:
+        pass
     create_list_of_files()
 
 if skip_button:

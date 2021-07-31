@@ -2,7 +2,6 @@ import streamlit as st
 import os
 import os.path
 import ftplib
-from pathlib import Path
 
 host = 'ftp4.nska.net'
 ftp_user = 'test1@lookies.by'
