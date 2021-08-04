@@ -14,6 +14,7 @@ list_of_files = []
 def pick_random_img():
     list_of_files = []
     list_of_skip = []
+
     ftp = ftplib.FTP(host, ftp_user, ftp_password)
 
     a_file = open("list_to_do.txt", 'r')
@@ -38,7 +39,7 @@ def pick_random_img():
     st.text("LEFT TO DO: " + str(len(list_of_files)))
     # pick a file "to do"
     first_line = list_of_files[0]
-
+    print(first_line)
     ftp.quit()
     return first_line
 
@@ -59,14 +60,20 @@ def save_cropped_img_ftp(cropped_img, img_file):
     img = open(filename_split[2], 'rb')
     ftp = ftplib.FTP(host, ftp_user, ftp_password)
     ftp.storbinary('STOR ' + base_folder_crop + '/' + str(filename_split[1]) + '/' + str(filename_split[2]), img)
-
-    #Removing the firs element of todo list
-    with open("list_to_do.txt", 'r') as fin:
-        data = fin.read().splitlines(True)
-    with open("list_to_do.txt", 'w') as fout:
-        fout.writelines(data[1:])
-
     ftp.quit()
+    #Removing the firs element of todo list
+    a_file = open('list_to_do.txt', 'r')
+    list_of_files = []
+    for line in a_file:
+        stripped_line = line.strip()
+        list_of_files.append(stripped_line)
+    a_file.close()
+
+    list_of_files.remove(img_file)
+
+    with open('list_to_do.txt', 'w') as f:
+        for item in list_of_files:
+            f.write("%s\n" % item)
 
 
 def create_list_of_files():
